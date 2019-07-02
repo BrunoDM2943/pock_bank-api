@@ -12,3 +12,5 @@
 *.out
 .vscode
 gotest.db
+test.db
+pock_bank-api

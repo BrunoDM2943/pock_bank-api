@@ -23,6 +23,7 @@ func main() {
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("{pong}"))
 	})
-	r.HandleFunc("/person", accountHandler.PostAccount).Methods("POST")
+	r.HandleFunc("/api/account", accountHandler.PostAccount).Methods("POST")
+	r.HandleFunc("/api/account/{id}", accountHandler.GetAccount).Methods("GET")
 	log.Fatal(http.ListenAndServe(":8000", r))
 }

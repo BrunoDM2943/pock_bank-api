@@ -15,8 +15,8 @@ type accountService struct {
 	repo IAccountRepo
 }
 
-func (service accountService) SaveAccount(person *domain.Account) error {
-	return service.repo.SaveAccount(person)
+func (service accountService) SaveAccount(account *domain.Account) error {
+	return service.repo.SaveAccount(account)
 }
 
 func (service accountService) GetAccount(ID int64) (*domain.Account, error) {

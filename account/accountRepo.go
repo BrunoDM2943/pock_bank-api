@@ -5,11 +5,14 @@ import (
 	"github.com/BrunoDM2943/pock_bank-api/domain"
 )
 
+//IAccountRepo repositoyry
+//go:generate mockgen -source=./accountRepo.go -destination=./mock/mock_accountRepo.go
 type IAccountRepo interface {
 	SaveAccount(account *domain.Account) error
 	GetAccount(ID int64) (*domain.Account, error)
 }
 
+//NewAccountRepo creates a IAccountRepo object
 func NewAccountRepo(db *gorm.DB) IAccountRepo {
 	return &accountRepo{
 		db,

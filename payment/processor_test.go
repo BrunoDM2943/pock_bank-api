@@ -18,6 +18,12 @@ func BenchmarkProcessPaymentsFaster(b *testing.B) {
 	}
 }
 
+func BenchmarkProcessPaymentsParalel(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		processPaymentsParallel(mockList(100))
+	}
+}
+
 func mockList(qtd int) []domain.Payment {
 	payments := make([]domain.Payment, 0)
 	for i := 0; i < qtd; i++ {

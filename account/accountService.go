@@ -2,6 +2,8 @@ package account
 
 import "github.com/BrunoDM2943/pock_bank-api/domain"
 
+//IAccountService for account services
+//go:generate mockgen -source=./accountService.go -destination=./mock/mock_accountService.go
 type IAccountService interface {
 	SaveAccount(person *domain.Account) error
 	GetAccount(ID int64) (*domain.Account, error)

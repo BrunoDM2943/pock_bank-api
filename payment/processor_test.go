@@ -24,6 +24,18 @@ func BenchmarkProcessPaymentsParalel(b *testing.B) {
 	}
 }
 
+func BenchmarkPayInParallel(b *testing.B) {
+	processor := NewPaymentProcessor()
+	user := &domain.Account{
+		ID: 19,
+	}
+	b.RunParallel(func(pb *testing.PB) {
+		for pb.Next() {
+			processor.pay(1, 1, user)
+		}
+	})
+}
+
 func mockList(qtd int) []domain.Payment {
 	payments := make([]domain.Payment, 0)
 	for i := 0; i < qtd; i++ {

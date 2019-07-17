@@ -1,21 +1,22 @@
 package account
 
 import (
-	"github.com/stretchr/testify/assert"
-	"testing"
 	"errors"
-	"github.com/golang/mock/gomock"
+	"testing"
+
 	mock "github.com/BrunoDM2943/pock_bank-api/account/mock"
 	"github.com/BrunoDM2943/pock_bank-api/domain"
+	"github.com/golang/mock/gomock"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestSaveAccountOK(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
-	mockDao := mock.NewMockIAccountRepo(ctrl)
+	mockDao := mock.NewMockRepository(ctrl)
 	service := NewAccountService(mockDao)
 	account := &domain.Account{
-		User: "bdm2943",
+		User:    "bdm2943",
 		Balance: 100,
 	}
 	mockDao.EXPECT().SaveAccount(account).Return(nil).AnyTimes()
@@ -26,10 +27,10 @@ func TestSaveAccountOK(t *testing.T) {
 func TestSaveAccountNotOK(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
-	mockDao := mock.NewMockIAccountRepo(ctrl)
+	mockDao := mock.NewMockRepository(ctrl)
 	service := NewAccountService(mockDao)
 	account := &domain.Account{
-		User: "bdm2943",
+		User:    "bdm2943",
 		Balance: 100,
 	}
 	mockDao.EXPECT().SaveAccount(account).Return(errors.New("Error")).AnyTimes()
@@ -40,12 +41,12 @@ func TestSaveAccountNotOK(t *testing.T) {
 func TestGetAccountOK(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
-	mockDao := mock.NewMockIAccountRepo(ctrl)
+	mockDao := mock.NewMockRepository(ctrl)
 	service := NewAccountService(mockDao)
 	accountMock := &domain.Account{
-		User: "bdm2943",
+		User:    "bdm2943",
 		Balance: 100,
-		ID: 19,
+		ID:      19,
 	}
 	mockDao.EXPECT().GetAccount(int64(19)).Return(accountMock, nil).AnyTimes()
 	account, err := service.GetAccount(19)
@@ -56,7 +57,7 @@ func TestGetAccountOK(t *testing.T) {
 func TestGetAccountNotOK(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
-	mockDao := mock.NewMockIAccountRepo(ctrl)
+	mockDao := mock.NewMockRepository(ctrl)
 	service := NewAccountService(mockDao)
 	mockDao.EXPECT().GetAccount(int64(19)).Return(nil, errors.New("Error")).AnyTimes()
 	account, err := service.GetAccount(19)

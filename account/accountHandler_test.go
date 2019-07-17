@@ -16,7 +16,7 @@ import (
 func TestPostAccountOK(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
-	service := mock.NewMockIAccountService(ctrl)
+	service := mock.NewMockService(ctrl)
 	personHandler := NewAccountHandler(
 		service,
 	)
@@ -40,7 +40,7 @@ func TestPostAccountOK(t *testing.T) {
 func TestPostAccountNOK(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
-	service := mock.NewMockIAccountService(ctrl)
+	service := mock.NewMockRepository(ctrl)
 	personHandler := NewAccountHandler(
 		service,
 	)

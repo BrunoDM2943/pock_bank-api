@@ -10,31 +10,31 @@ import (
 	reflect "reflect"
 )
 
-// MockIAccountService is a mock of IAccountService interface
-type MockIAccountService struct {
+// MockService is a mock of Service interface
+type MockService struct {
 	ctrl     *gomock.Controller
-	recorder *MockIAccountServiceMockRecorder
+	recorder *MockServiceMockRecorder
 }
 
-// MockIAccountServiceMockRecorder is the mock recorder for MockIAccountService
-type MockIAccountServiceMockRecorder struct {
-	mock *MockIAccountService
+// MockServiceMockRecorder is the mock recorder for MockService
+type MockServiceMockRecorder struct {
+	mock *MockService
 }
 
-// NewMockIAccountService creates a new mock instance
-func NewMockIAccountService(ctrl *gomock.Controller) *MockIAccountService {
-	mock := &MockIAccountService{ctrl: ctrl}
-	mock.recorder = &MockIAccountServiceMockRecorder{mock}
+// NewMockService creates a new mock instance
+func NewMockService(ctrl *gomock.Controller) *MockService {
+	mock := &MockService{ctrl: ctrl}
+	mock.recorder = &MockServiceMockRecorder{mock}
 	return mock
 }
 
 // EXPECT returns an object that allows the caller to indicate expected use
-func (m *MockIAccountService) EXPECT() *MockIAccountServiceMockRecorder {
+func (m *MockService) EXPECT() *MockServiceMockRecorder {
 	return m.recorder
 }
 
 // SaveAccount mocks base method
-func (m *MockIAccountService) SaveAccount(person *domain.Account) error {
+func (m *MockService) SaveAccount(person *domain.Account) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "SaveAccount", person)
 	ret0, _ := ret[0].(error)
@@ -42,13 +42,13 @@ func (m *MockIAccountService) SaveAccount(person *domain.Account) error {
 }
 
 // SaveAccount indicates an expected call of SaveAccount
-func (mr *MockIAccountServiceMockRecorder) SaveAccount(person interface{}) *gomock.Call {
+func (mr *MockServiceMockRecorder) SaveAccount(person interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SaveAccount", reflect.TypeOf((*MockIAccountService)(nil).SaveAccount), person)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SaveAccount", reflect.TypeOf((*MockService)(nil).SaveAccount), person)
 }
 
 // GetAccount mocks base method
-func (m *MockIAccountService) GetAccount(ID int64) (*domain.Account, error) {
+func (m *MockService) GetAccount(ID int64) (*domain.Account, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetAccount", ID)
 	ret0, _ := ret[0].(*domain.Account)
@@ -57,7 +57,7 @@ func (m *MockIAccountService) GetAccount(ID int64) (*domain.Account, error) {
 }
 
 // GetAccount indicates an expected call of GetAccount
-func (mr *MockIAccountServiceMockRecorder) GetAccount(ID interface{}) *gomock.Call {
+func (mr *MockServiceMockRecorder) GetAccount(ID interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAccount", reflect.TypeOf((*MockIAccountService)(nil).GetAccount), ID)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAccount", reflect.TypeOf((*MockService)(nil).GetAccount), ID)
 }

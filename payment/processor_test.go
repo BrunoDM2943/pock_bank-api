@@ -8,13 +8,13 @@ import (
 
 func BenchmarkProcessPayments(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		processPayments(mockList(1000))
+		processPayments(mockList(10000))
 	}
 }
 
 func BenchmarkProcessPaymentsFaster(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		processPaymentsFaster(mockListPointer(1000))
+		processPaymentsFaster(mockListPointer(10000))
 	}
 }
 
